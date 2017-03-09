@@ -262,7 +262,7 @@ class ControllerPaymentMycelium extends Controller {
 				break;
 			case '2':
 				// paid, confirmed
-				$order_status_id = $this->setting('confirmed_status');
+				$order_status_id = $this->setting('complete_status');
 				$order_message = $this->language->get('text_progress_complete');
 				$this->model_payment_mycelium->freeKeychainId($keychain_id);
 				break;
