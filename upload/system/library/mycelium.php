@@ -101,20 +101,21 @@ class Mycelium {
 		if(!empty($callback_data))
 			$uri .=  '&callback_data=' . $callback_data;
 		
-		$res = @json_decode($this->apiCall($this->api_gateway_endpoint, $uri, 'POST'), true);
+		$res = $this->apiCall($this->api_gateway_endpoint, $uri, 'POST');
+		$json = @json_decode($res, true);
 		
-		if(empty($res))
+		if(empty($json))
 		{
 			// maybe log this? :P
-			$this->log('error', $this->language->get('log_response_error'));
+			$this->log('error', $this->language->get('log_response_error') . " Data: " . $res);
 			throw new MyceliumException('Invalid json response from Mycelium');
 		}
 		
 		
 		// all should be good here
-		$res['pay_url'] = $this->api_pay_endpoint . $res['payment_id'];
-		$res['gateway_id'] = $this->gatewayId;
-		return $res;
+		$json['pay_url'] = $this->api_pay_endpoint . $json['payment_id'];
+		$json['gateway_id'] = $this->gatewayId;
+		return $json;
 	}
 	
 	/**

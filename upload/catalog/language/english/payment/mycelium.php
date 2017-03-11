@@ -12,5 +12,5 @@ $_['expired_text']               = 'This order has expired. Create one again fro
 $_['back_button']                = 'Back to store';
 
 // Log
-$_['log_response_error']         = 'Invalid Mycelium response. If you see many of these it might be that your Gateway Secret is not correct.';
+$_['log_response_error']         = 'Invalid Mycelium response. Caused by Invalid gateway secret, Mycelium timeout and invalid request.';
 
