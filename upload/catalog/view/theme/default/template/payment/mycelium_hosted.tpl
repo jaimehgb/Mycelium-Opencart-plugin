@@ -8,33 +8,33 @@ echo $column_left;
 <div class="container container-fluid" style="font-family: 'Roboto', 'Lucida Sans Unicode', Helvetica, Arial, Verdana, sans-serif; color:#21202c">
   <div class="col-md-12" style="background:#e7ecee; padding:20px; border-radius:5px">
     <div class="row">
-      <div class="col-xs-2"></div>
-      <div class="col-xs-2">
-        <i id="expired_sign" class="fa fa-exclamation-triangle" style="font-size:15em; color:#a5b8c0; display:none" aria-hidden="true"></i>
-        <i id="success_check" class="fa fa-check-square-o" style="font-size:15em; color:#a5b8c0; display:none" aria-hidden="true"></i>
-        <img id="qr-code" class="img-responsive" src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=bitcoin:<?php echo $address; ?>?amount=<?php echo $bitcoin_amount; ?>" style="border-radius:5px"/>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-2 text-center">
+          <i id="expired_sign" class="fa fa-exclamation-triangle" style="font-size:15em; color:#a5b8c0; display:none" aria-hidden="true"></i>
+          <i id="success_check" class="fa fa-check-square-o" style="font-size:15em; color:#a5b8c0; display:none" aria-hidden="true"></i>
+          <a href="bitcoin:<?php echo $address; ?>?amount=<?php echo $bitcoin_amount; ?>" ><img id="qr-code" class="img-responsive" style="margin:auto" src="https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=bitcoin:<?php echo $address; ?>?amount=<?php echo $bitcoin_amount; ?>" style="border-radius:5px"/></a>
+          <p class="text-center"><small>(click or tap to open in wallet)</small></p>
       </div>
-      <div class="col-xs-6">
+      <div class="col-sm-6">
         <h5><?php echo date('d M Y, h:i', time()); ?> <?php if($expiration_time !== null){ ?>- Time remaining: ~ <span id="time_minutes"><?php echo intval($expiration_time / 60); ?></span>:<span id="time_seconds"><?php echo $expiration_time % 60; ?></span><?php } ?></h5>
         <p id="send_text"
-           style="font-size: 24px;
+           class="text-center"
+           style="font-size: 1.5em;
                   line-height: 1.6em;
                   display: inline;
                   margin-bottom: 10px;
-                  display: inline-block;
                   zoom: 1;
                   letter-spacing: normal;
                   word-spacing: normal;
                   vertical-align: top;
                   text-rendering: auto;">
-          <?php echo $please_send; ?> <b style="font-weight:300; font-size:32px; padding:3px 3px 3px 3px; line-height: 26px "><?php echo $bitcoin_amount; ?> BTC</b><br/> <?php echo $to_address; ?> <br/>
-          <span style="background:#fff; padding:5px; color:#888"><?php echo $address; ?></span> <br/>
+          <?php echo $please_send; ?> <b style="font-weight:300; font-size:1.5em; padding:3px 3px 3px 3px; line-height: 26px "><?php echo $bitcoin_amount; ?> BTC</b><br/> <?php echo $to_address; ?> <br/>
+          <span style="background:#fff; padding:5px; color:#888; font-size:0.9em"><?php echo $address; ?></span> <br/>
         </p>
-        <p style="font-size: 24px;
+        <p style="font-size: 1.5em;
                   line-height: 1.6em;
                   display: inline;
                   margin-bottom: 10px;
-                  display: inline-block;
                   zoom: 1;
                   letter-spacing: normal;
                   word-spacing: normal;
@@ -43,11 +43,10 @@ echo $column_left;
                   display:none" id="success_text">
           <?php echo $success_text; ?>
         </p>
-        <p style="font-size: 24px;
+        <p style="font-size: 1.5em;
                   line-height: 1.6em;
                   display: inline;
                   margin-bottom: 10px;
-                  display: inline-block;
                   zoom: 1;
                   letter-spacing: normal;
                   word-spacing: normal;
@@ -60,8 +59,8 @@ echo $column_left;
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-2"></div>
-      <div class="col-xs-8">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
         <?php if($shifty_enabled){ ?>
         <div style="width:217px; margin:auto" id="shapeshift_container">
           <script>function shapeshift_click(a,e){e.preventDefault();var link=a.href;window.open(link,'1418115287605','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=0,left=0,top=0');return false;}</script> <a onclick="shapeshift_click(this, event);" href="https://shapeshift.io/shifty.html?destination=<?php echo $address; ?>&amp;output=BTC&amp;apiKey=563a6bdf5ba5881546cfe78a6bc68df1e718f06ab791ed4fa4fd19c1470c06d35b1230ede614f37977601ca965274906325102986a5c0d04938024e68809dc3b&amp;amount=<?php echo $bitcoin_amount; ?>"</a><img src="https://shapeshift.io/images/shifty/small_dark_altcoins.png" class="ss-button"></a>
