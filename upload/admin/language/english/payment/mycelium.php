@@ -36,6 +36,7 @@ $_['entry_expiration_period']= 'Orders expiration period';
 $_['entry_return_url']       = 'Return URL';
 $_['entry_back_url']         = 'Back/Cancel URL';
 $_['entry_expiration_period']= 'Order expiration period';
+$_['entry_sort_order']       = 'Sort Order';
 $_['entry_geo_zone']         = 'Geo Zone';
 $_['entry_status']           = 'Status';
 $_['entry_paid_status']      = 'Paid Status';

@@ -49,6 +49,7 @@ class ControllerPaymentMycelium extends Controller {
 			*/
 
 			$this->setting('expiration_period', $this->request->post['mycelium_expiration_period']);
+			$this->setting('sort_order', $this->request->post['mycelium_sort_order']);
 			$this->setting('geo_zone_id', $this->request->post['mycelium_geo_zone_id']);
 			$this->setting('status', $this->request->post['mycelium_status']);
 			$this->setting('paid_status', $this->request->post['mycelium_paid_status']);
@@ -87,6 +88,7 @@ class ControllerPaymentMycelium extends Controller {
 		$data['entry_shifty'] = $this->language->get('entry_shifty');
 		$data['entry_reuse_time'] = $this->language->get('entry_reuse_time');
 		
+		$data['entry_sort_order'] = $this->language->get('entry_sort_order');
 		$data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
 		$data['entry_status'] = $this->language->get('entry_status');
 		$data['entry_paid_status'] = $this->language->get('entry_paid_status');
@@ -169,6 +171,7 @@ class ControllerPaymentMycelium extends Controller {
 		$data['mycelium_gateway_xpub'] = (isset($this->request->post['mycelium_gateway_xpub'])) ? $this->request->post['mycelium_gateway_xpub'] : $this->setting('gateway_xpub');
 		$data['mycelium_expiration_period'] = (isset($this->request->post['mycelium_expiration_period'])) ? $this->request->post['mycelium_expiration_period'] : $this->setting('expiration_period');
 		$data['mycelium_shifty_enabled'] = (isset($this->request->post['mycelium_shifty_enabled'])) ? $this->request->post['mycelium_shifty_enabled']  :$this->setting('shifty_enabled');
+		$data['mycelium_sort_order'] = (isset($this->request->post['mycelium_sort_order'])) ? $this->request->post['mycelium_sort_order'] : $this->setting('sort_order');
 		$data['mycelium_geo_zone_id'] = (isset($this->request->post['mycelium_geo_zone_id'])) ? $this->request->post['mycelium_geo_zone_id'] : $this->setting('geo_zone_id');
 		$data['mycelium_status'] = (isset($this->request->post['mycelium_status'])) ? $this->request->post['mycelium_status'] : $this->setting('status');
 		$data['mycelium_reuse_time'] = (isset($this->request->post['mycelium_reuse_time'])) ? $this->request->post['mycelium_reuse_time'] : $this->setting('address_reuse_time');
@@ -417,6 +420,7 @@ class ControllerPaymentMycelium extends Controller {
 			'mycelium_test_mode' => 'false',
 			'mycelium_convert_to' => 'BTC',
 			'mycelium_email_notifications' => 'false',*/
+			'mycelium_sort_order' => null,
 			'mycelium_geo_zone_id' => '0',
 			'mycelium_status' => '0',
 			'mycelium_paid_status' => $default_paid,

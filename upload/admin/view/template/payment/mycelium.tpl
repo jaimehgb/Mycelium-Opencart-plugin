@@ -124,7 +124,7 @@
                                 </div>
                             </div>
                             -->
-                                                        <div class="form-group">
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label" for="input-shifty"><span data-toggle="tooltip" title="<?php echo $help_shifty; ?>"><?php echo $entry_shifty; ?></span></label>
                                 <div class="col-sm-10">
                                     <select name="mycelium_shifty_enabled" id="input-shifty" class="form-control">
@@ -136,6 +136,13 @@
                                         <option value="0" selected="selected"><?php echo $text_disabled; ?></option>
                                         <?php } ?>
                                     </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="input-sort-order"><?php echo $entry_sort_order; ?></label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="mycelium_sort_order" class="form-control" value="<?php echo $mycelium_sort_order; ?>" />
                                 </div>
                             </div>
 
@@ -156,6 +163,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="input-status"><?php echo $entry_status; ?></label>
                                 <div class="col-sm-10">

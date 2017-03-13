@@ -36,7 +36,7 @@ class ModelPaymentMycelium extends Model {
 				'code'	   => 'mycelium',
 				'title'	  => $title,
 				'terms'	  => '',
-				'sort_order' => $this->config->get('cod_sort_order')
+				'sort_order' => $this->mycelium->setting('sort_order')
 			);
 		}
 	}
