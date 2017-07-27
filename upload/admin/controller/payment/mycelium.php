@@ -54,6 +54,7 @@ class ControllerPaymentMycelium extends Controller {
 			$this->setting('status', $this->request->post['mycelium_status']);
 			$this->setting('paid_status', $this->request->post['mycelium_paid_status']);
 			$this->setting('complete_status', $this->request->post['mycelium_complete_status']);
+			$this->setting('underpaid_status', $this->request->post['mycelium_underpaid_status']);
 			$this->setting('shifty_enabled', $this->request->post['mycelium_shifty_enabled']);
 			$this->setting('address_reuse_time', abs($this->request->post['mycelium_reuse_time']));
 			
@@ -94,6 +95,7 @@ class ControllerPaymentMycelium extends Controller {
 		$data['entry_paid_status'] = $this->language->get('entry_paid_status');
 		$data['entry_confirmed_status'] = $this->language->get('entry_confirmed_status');
 		$data['entry_complete_status'] = $this->language->get('entry_complete_status');
+		$data['entry_underpaid_status'] = $this->language->get('entry_underpaid_status');
 		$data['entry_debug'] = $this->language->get('entry_debug');
 		
 		
@@ -121,6 +123,7 @@ class ControllerPaymentMycelium extends Controller {
 		$data['help_paid_status'] = $this->language->get('help_paid_status');
 		$data['help_confirmed_status'] = $this->language->get('help_confirmed_status');
 		$data['help_complete_status'] = $this->language->get('help_complete_status');
+		$data['help_underpaid_status'] = $this->language->get('help_underpaid_status');
 		$data['help_callback_url'] = $this->language->get('help_callback_url');
 		$data['help_return_url'] = $this->language->get('help_return_url');
 		$data['help_back_url'] = $this->language->get('help_back_url');
@@ -181,6 +184,7 @@ class ControllerPaymentMycelium extends Controller {
 		$data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
 		$data['mycelium_paid_status'] = (isset($this->request->post['mycelium_paid_status'])) ? $this->request->post['mycelium_paid_status'] : $this->setting('paid_status');
 		$data['mycelium_complete_status'] = (isset($this->request->post['mycelium_complete_status'])) ? $this->request->post['mycelium_complete_status'] : $this->setting('complete_status');
+		$data['mycelium_underpaid_status'] = (isset($this->request->post['mycelium_underpaid_status'])) ? $this->request->post['mycelium_underpaid_status'] : $this->setting('underpaid_status');
 
 		// #ADVANCED
 		$data['mycelium_callback_url'] = (isset($this->request->post['mycelium_callback_url'])) ? $this->request->post['mycelium_callback_url'] : $this->setting('callback_url');
@@ -378,6 +382,7 @@ class ControllerPaymentMycelium extends Controller {
 		$default_paid = null;
 		$default_confirmed = null;
 		$default_complete= null;
+		$default_underpaid = 'Failed'; // there is no default underpaid, needs to be added at Settings/Localisation/Order Statuses
 		foreach ($order_statuses as $order_status) {
 			if ($order_status['name'] == 'Processing') {
 				$default_paid = $order_status['order_status_id'];
@@ -385,7 +390,7 @@ class ControllerPaymentMycelium extends Controller {
 				$default_confirmed = $order_status['order_status_id'];
 			} elseif ($order_status['name'] == 'Complete') {
 				$default_complete = $order_status['order_status_id'];
-			}
+			} 
 		}
 		// default urls
 		$default_notify_url = $this->url->link('payment/mycelium/callback', $this->config->get('config_secure'));
@@ -426,6 +431,7 @@ class ControllerPaymentMycelium extends Controller {
 			'mycelium_paid_status' => $default_paid,
 			'mycelium_confirmed_status' => $default_confirmed,
 			'mycelium_complete_status' => $default_complete,
+			'mycelium_underpaid_status' => $default_underpaid,
 			'mycelium_valid_settings' => 'false',
 			'mycelium_debug' => '0',
 		);

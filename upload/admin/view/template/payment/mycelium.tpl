@@ -218,6 +218,20 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label"><span data-toggle="tooltip" title="<?php echo $help_underpaid_status; ?>"><?php echo $entry_underpaid_status; ?></span></label>
+                                <div class="col-sm-10">
+                                    <select name="mycelium_underpaid_status" class="form-control">
+                                        <?php foreach ($order_statuses as $order_status) { ?>
+                                        <?php if ($order_status['order_status_id'] == $mycelium_underpaid_status) { ?>
+                                        <option value="<?php echo $order_status['order_status_id']; ?>" selected="selected"><?php echo $order_status['name']; ?></option>
+                                        <?php } else { ?>
+                                        <option value="<?php echo $order_status['order_status_id']; ?>"><?php echo $order_status['name']; ?></option>
+                                        <?php } ?>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
                             <br>
                             <h3 class="col-sm-10 col-sm-offset-2<?php if ($error_notify_url || $error_return_url) { ?> text-danger<?php } ?>">
                                 <?php echo $text_advanced; ?>

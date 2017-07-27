@@ -266,6 +266,11 @@ class ControllerPaymentMycelium extends Controller {
 				$order_message = $this->language->get('text_progress_complete');
 				$this->model_payment_mycelium->freeKeychainId($keychain_id);
 				break;
+			case '3':
+				// underpaid :P
+				$order_status_id = $this->setting('underpaid_status');
+				$order_message = $this->language->get('text_progress_underpaid');
+				break;
 			case '4':
 				// paid, confirmed, overpaid actually
 				$order_status_id = $this->setting('complete_status');
