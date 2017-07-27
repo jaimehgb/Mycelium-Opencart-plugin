@@ -247,12 +247,19 @@ class ControllerPaymentMycelium extends Controller {
 		$amount_btc = $this->request->get['amount_in_btc'];
 		$amount_btc_paid = $this->request->get['amount_paid_in_btc'];
 		$address = $this->request->get['address'];
+		$txids = json_decode($this->request->get['transaction_ids']);
 		$callback_data = $this->request->get['callback_data'];
 		$callback_data = explode('/', $callback_data);
 		
 		$opencart_order_id = str_replace('opencart_order_id_', '', $callback_data[0]);
 		$keychain_id = str_replace('mycelium_keychain_id_', '', $callback_data[1]);
 		
+		$comment[] = "Amount in BTC: " . $amount_btc;
+		$comment[] = "Amount paid in BTC: " . $amount_btc_paid;
+		$comment[] = "Payment Address: " . $address;
+		$comment[] = "Exchange Rate: " . ($amount / $amount_btc);
+		$comment[] = 'Txids: ' . implode(', ', $txids);
+		$comment = implode('<br/>', $comment);
 
 		switch ($status) {
 			case '1':
@@ -292,6 +299,6 @@ class ControllerPaymentMycelium extends Controller {
 		}
 
 		// Progress the order status
-		$this->model_checkout_order->addOrderHistory($opencart_order_id, $order_status_id);
+		$this->model_checkout_order->addOrderHistory($opencart_order_id, $order_status_id, $comment);
 	}
 }
